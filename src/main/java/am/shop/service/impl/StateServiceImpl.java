@@ -1,8 +1,6 @@
 package am.shop.service.impl;
 
-import am.shop.model.Country;
 import am.shop.model.State;
-import am.shop.repository.CountryRepository;
 import am.shop.repository.StateRepository;
 import am.shop.service.StateService;
 import am.shop.util.exceptions.DuplicateException;

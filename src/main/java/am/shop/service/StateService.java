@@ -1,6 +1,5 @@
 package am.shop.service;
 
-import am.shop.model.Country;
 import am.shop.model.State;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;

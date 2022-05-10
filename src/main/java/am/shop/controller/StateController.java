@@ -1,9 +1,6 @@
 package am.shop.controller;
 
-
-import am.shop.model.Country;
 import am.shop.model.State;
-import am.shop.service.CountryService;
 import am.shop.service.StateService;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
