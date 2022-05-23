@@ -1,4 +1,5 @@
 package am.shop.service.impl;
+
 import am.shop.model.Country;
 import am.shop.repository.CountryRepository;
 import am.shop.service.CountryService;
@@ -31,10 +32,14 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public void crateCountry(Country country) throws DuplicateException {
+        countryCreationChecks(country);
+        countryRepository.save(country);
+    }
+
+    private void countryCreationChecks(Country country) throws DuplicateException {
         int dupCount = countryRepository.countByCountry(country.getCountry());
         if (dupCount > 0) {
             throw new DuplicateException("duplication country");
         }
-        countryRepository.save(country);
     }
 }

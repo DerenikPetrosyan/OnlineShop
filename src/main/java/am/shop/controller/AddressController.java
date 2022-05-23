@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class AddressController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> crateAddress(@RequestBody Address address) throws DuplicateException {
+    public ResponseEntity<Void> crateAddress(@Valid  @RequestBody Address address) throws DuplicateException, NotFoundExcaption {
         addressService.crateAddress(address);
         return ResponseEntity.ok().build();
     }

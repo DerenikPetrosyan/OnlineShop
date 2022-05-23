@@ -9,9 +9,11 @@ import java.util.List;
 public interface CityService {
 
 
-    City getById(int id) throws NotFoundExcaption;
+    City getById(long id) throws NotFoundExcaption;
 
     List<City> getByAll() throws NotFoundExcaption;
 
-    void crateCity(City city) throws DuplicateException;
+    void crateCity(City city) throws DuplicateException, NotFoundExcaption;
+
+    List<City> getByCountryId(int countryid);
 }

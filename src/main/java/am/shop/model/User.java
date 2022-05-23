@@ -2,6 +2,8 @@ package am.shop.model;
 
 import lombok.Data;
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -29,8 +31,8 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private UserStatus status;
 
-    @Column(name = "verification_code")
-    private String verificationCode;
+    @Column(name = "ver_code")
+    private String verCode;
 
     @Column(name = "updated_at")
     private long updatedAt;
@@ -38,8 +40,14 @@ public class User {
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
 
-    @ManyToOne
+    @OneToOne
     private Address address;
+
+    @ManyToMany
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
 
 
 

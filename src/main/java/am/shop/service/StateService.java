@@ -13,5 +13,7 @@ public interface StateService {
 
     List<State> getByAll() throws NotFoundExcaption;
 
-    void crateState(State state) throws DuplicateException;
+    List<State> getByCountryId(int countryId);
+
+    void crateState(State state) throws DuplicateException, NotFoundExcaption;
 }

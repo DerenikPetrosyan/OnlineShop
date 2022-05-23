@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,10 +27,16 @@ public class StateController {
         return stateService.getByAll();
     }
 
+    @GetMapping("/country/{countryid}")
+    public ResponseEntity<List<State>> getByCountryId(@PathVariable int countryid){
+        return ResponseEntity.ok(stateService.getByCountryId(countryid));
+    }
+
     @PostMapping
-    public ResponseEntity<Void> crateState(@RequestBody State state) throws DuplicateException {
+    public ResponseEntity<Void> crateState(@Valid @RequestBody State state) throws DuplicateException, NotFoundExcaption {
         stateService.crateState(state);
         return ResponseEntity.ok().build();
     }
+
 
 }

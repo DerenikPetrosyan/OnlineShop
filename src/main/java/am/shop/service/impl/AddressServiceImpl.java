@@ -3,6 +3,8 @@ package am.shop.service.impl;
 import am.shop.model.Address;
 import am.shop.repository.AddressRepository;
 import am.shop.service.AddressService;
+import am.shop.service.CountryService;
+import am.shop.service.StateService;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,14 @@ public class AddressServiceImpl implements AddressService {
     @Autowired
     private AddressRepository addressRepository;
 
+    @Autowired
+    private StateService stateService;
+
+    @Autowired
+    private CountryService countryService;
+
     @Override
-    public Address getById(int id) throws NotFoundExcaption {
+    public Address getById(long id) throws NotFoundExcaption {
         Address address = addressRepository.getById(id);
         if (address == null) {
             throw new NotFoundExcaption();
@@ -32,11 +40,20 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void crateAddress(Address address) throws DuplicateException {
-        int dupCount = addressRepository.countByAddress(address);
-        if (dupCount > 0) {
-            throw new DuplicateException("duplication address");
-        }
+    public void crateAddress(Address address) throws  NotFoundExcaption {
+        addressCreationChecks(address);
         addressRepository.save(address);
+    }
+
+    private void addressCreationChecks(Address address) throws NotFoundExcaption {
+
+        if (address.getState() != null) {
+            if (stateService.getById(address.getState().getId()) == null) {
+                throw new NotFoundExcaption("not found state");
+            }
+        }
+        if (countryService.getById(address.getCountry().getId()) == null) {
+            throw new NotFoundExcaption("not found country");
+        }
     }
 }
