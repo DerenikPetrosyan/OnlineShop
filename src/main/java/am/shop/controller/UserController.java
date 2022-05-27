@@ -8,7 +8,6 @@ import am.shop.service.UserService;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,11 +34,10 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserResponseDto> getByAll() {
-        return userService.getByAll();
+    public ResponseEntity<List<UserResponseDto>> getAll() {
+        return ResponseEntity.ok(userService.getAll());
     }
 
-    //ete password@ moracel es es qo hamar nor code generacni unenalov menak email@
     @PatchMapping("/for-all/forgot-password")
     public ResponseEntity<Void> forgotPassword(@RequestParam String email) throws NotFoundExcaption {
 
@@ -48,7 +46,6 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    //sovorakan mtnum poxum es password@ unenalov mailid ekac cod@
     @PatchMapping("/for-all/reset-password")
     public ResponseEntity<Void> resetPassword(@Valid @RequestBody ResetPasswordDto dto) throws BadRequestException, NotFoundExcaption {
 

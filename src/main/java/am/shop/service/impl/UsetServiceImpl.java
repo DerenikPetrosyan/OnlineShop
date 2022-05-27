@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,7 +34,6 @@ public class UsetServiceImpl implements UserService {
     @Autowired
     private AddressServiceImpl addressService;
 
-
     @Override
     public User getByUsername(String username) throws NotFoundExcaption {
 
@@ -46,7 +44,6 @@ public class UsetServiceImpl implements UserService {
 
         return user;
     }
-
 
     @Override
     public void createUser(UserRequestDto dto) throws DuplicateException, BadRequestException, NotFoundExcaption {
@@ -98,19 +95,17 @@ public class UsetServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponseDto> getByAll() {
-
-    return null;
+    public List<UserResponseDto> getAll() {
+        return userRepository.getAll();
     }
 
     @Transactional
     @Override
     public void forgotPassword(String email) throws NotFoundExcaption {
 
-        if(!userRepository.existsByEmail(email)){
+        if (!userRepository.existsByEmail(email)) {
             throw new NotFoundExcaption("not found email");
-        }
-        else {
+        } else {
             userRepository.newResetPasswordToken(email, RandomString.make(6));
         }
     }
@@ -119,24 +114,21 @@ public class UsetServiceImpl implements UserService {
     @Override
     public void resetPassword(ResetPasswordDto dto) throws NotFoundExcaption, BadRequestException {
 
-        if(!userRepository.existsByEmail(dto.getEmail())){
+        if (!userRepository.existsByEmail(dto.getEmail())) {
             throw new NotFoundExcaption("not found email");
-        }
-        else if(dto.getToken().compareTo(userRepository.getByEmail(dto.getEmail()).getResetPasswordToken())!=0){
+        } else if (dto.getToken().compareTo(userRepository.getByEmail(dto.getEmail()).getResetPasswordToken()) != 0) {
             throw new BadRequestException("not found token");
-        }
-        else if(dto.getNewPassword().compareTo(dto.getConfirmPassword())!=0){
+        } else if (dto.getNewPassword().compareTo(dto.getConfirmPassword()) != 0) {
             throw new BadRequestException("confirmPassword is not equal to a password");
-        }
-        else {
-            userRepository.newPassword(dto.getEmail(),passwordEncoder.encode(dto.getNewPassword()));
+        } else {
+            userRepository.newPassword(dto.getEmail(), passwordEncoder.encode(dto.getNewPassword()));
         }
 
     }
 
     @Override
     public void editUser(EditUserDto dto) throws NotFoundExcaption {
-        if(userRepository.existsById(dto.getId())) {
+        if (userRepository.existsById(dto.getId())) {
             User user = userRepository.getById(dto.getId());
             user.setFirstName(dto.getFirstName());
             user.setLastName(dto.getLastName());
@@ -145,13 +137,12 @@ public class UsetServiceImpl implements UserService {
             user.setAddress(dto.getAddress());
 
             userRepository.save(user);
-        }
-        else {
+        } else {
             throw new NotFoundExcaption("not found user");
         }
     }
 
-    @Transactional(rollbackFor = {BadRequestException.class,NotFoundExcaption.class})
+    @Transactional(rollbackFor = {BadRequestException.class, NotFoundExcaption.class})
     @Override
     public void verify(String email, String code) throws NotFoundExcaption, BadRequestException {
         User user = getByUsername(email);

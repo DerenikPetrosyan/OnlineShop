@@ -21,7 +21,7 @@ public interface UserService  {
 
     UserResponseDto getUserInfo(long id);
 
-   List<UserResponseDto>  getByAll();
+   List<UserResponseDto>  getAll();
 
 
     void forgotPassword(String email) throws NotFoundExcaption;
