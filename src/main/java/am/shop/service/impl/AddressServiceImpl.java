@@ -45,14 +45,14 @@ public class AddressServiceImpl implements AddressService {
         addressRepository.save(address);
     }
 
-    private void addressCreationChecks(Address address) throws NotFoundExcaption {
+    public void addressCreationChecks(Address address) throws NotFoundExcaption {
 
         if (address.getState() != null) {
             if (stateService.getById(address.getState().getId()) == null) {
                 throw new NotFoundExcaption("not found state");
             }
         }
-        if (countryService.getById(address.getCountry().getId()) == null) {
+        else if (countryService.getById(address.getCountry().getId()) == null) {
             throw new NotFoundExcaption("not found country");
         }
     }

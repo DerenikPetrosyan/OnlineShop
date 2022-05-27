@@ -2,13 +2,12 @@ package am.shop.service.impl;
 
 import am.shop.model.Role;
 import am.shop.model.User;
-import am.shop.model.UserRoles;
 import am.shop.model.UserStatus;
+import am.shop.model.dto.request.EditUserDto;
+import am.shop.model.dto.request.ResetPasswordDto;
 import am.shop.model.dto.request.UserRequestDto;
 import am.shop.model.dto.response.UserResponseDto;
 import am.shop.repository.UserRepository;
-import am.shop.service.CountryService;
-import am.shop.service.StateService;
 import am.shop.service.UserService;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
@@ -17,6 +16,7 @@ import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -33,10 +33,7 @@ public class UsetServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private StateService stateService;
-
-    @Autowired
-    private CountryService countryService;
+    private AddressServiceImpl addressService;
 
 
     @Override
@@ -47,7 +44,7 @@ public class UsetServiceImpl implements UserService {
             throw new NotFoundExcaption();
         }
 
-        return null;
+        return user;
     }
 
 
@@ -68,13 +65,11 @@ public class UsetServiceImpl implements UserService {
         user.setUpdatedAt(System.currentTimeMillis());
 
 
-
         Set<Role> roles = new HashSet<>();
         Role role = new Role();
-        role.setRole(UserRoles.CUSTOMER);
+        role.setId(1);
         roles.add(role);
         user.setRoles(roles);
-
 
 
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
@@ -93,31 +88,78 @@ public class UsetServiceImpl implements UserService {
             throw new DuplicateException();
         } else if (dto.getPassword().compareTo(dto.getConfirmPassword()) != 0) {
             throw new BadRequestException();
-        } else if (dto.getAddress().getState() != null) {
-            if (stateService.getById(dto.getAddress().getState().getId()) == null) {
-                throw new NotFoundExcaption("not found state");
-            }
-        } else if (countryService.getById(dto.getAddress().getCountry().getId()) == null) {
-            throw new NotFoundExcaption("not found country");
         }
-
+        addressService.addressCreationChecks(dto.getAddress());
     }
 
     @Override
-    public UserResponseDto getById(long id) {
-
-        return new UserResponseDto(userRepository.getById(id));
+    public UserResponseDto getUserInfo(long id) {
+        return userRepository.getUserInfo(id);
     }
 
     @Override
     public List<UserResponseDto> getByAll() {
-        List<User> users = userRepository.findAllBy();
-        List<UserResponseDto> userResponseDtos = new ArrayList<>();
 
-        for (int i = 0; i < users.size(); i++) {
-            UserResponseDto userResponseDto = new UserResponseDto(users.get(i));
-            userResponseDtos.add(userResponseDto);
+    return null;
+    }
+
+    @Transactional
+    @Override
+    public void forgotPassword(String email) throws NotFoundExcaption {
+
+        if(!userRepository.existsByEmail(email)){
+            throw new NotFoundExcaption("not found email");
         }
-        return userResponseDtos;
+        else {
+            userRepository.newResetPasswordToken(email, RandomString.make(6));
+        }
+    }
+
+    @Transactional
+    @Override
+    public void resetPassword(ResetPasswordDto dto) throws NotFoundExcaption, BadRequestException {
+
+        if(!userRepository.existsByEmail(dto.getEmail())){
+            throw new NotFoundExcaption("not found email");
+        }
+        else if(dto.getToken().compareTo(userRepository.getByEmail(dto.getEmail()).getResetPasswordToken())!=0){
+            throw new BadRequestException("not found token");
+        }
+        else if(dto.getNewPassword().compareTo(dto.getConfirmPassword())!=0){
+            throw new BadRequestException("confirmPassword is not equal to a password");
+        }
+        else {
+            userRepository.newPassword(dto.getEmail(),passwordEncoder.encode(dto.getNewPassword()));
+        }
+
+    }
+
+    @Override
+    public void editUser(EditUserDto dto) throws NotFoundExcaption {
+        if(userRepository.existsById(dto.getId())) {
+            User user = userRepository.getById(dto.getId());
+            user.setFirstName(dto.getFirstName());
+            user.setLastName(dto.getLastName());
+            user.setGender(dto.getGender());
+            user.setDob(dto.getDob());
+            user.setAddress(dto.getAddress());
+
+            userRepository.save(user);
+        }
+        else {
+            throw new NotFoundExcaption("not found user");
+        }
+    }
+
+    @Transactional(rollbackFor = {BadRequestException.class,NotFoundExcaption.class})
+    @Override
+    public void verify(String email, String code) throws NotFoundExcaption, BadRequestException {
+        User user = getByUsername(email);
+
+        if (user.getVerCode() == null || !user.getVerCode().equals(code)) {
+            throw new BadRequestException();
+        }
+        userRepository.verify(email);
+
     }
 }

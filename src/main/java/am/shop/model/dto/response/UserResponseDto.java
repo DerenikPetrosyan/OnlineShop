@@ -1,12 +1,17 @@
 package am.shop.model.dto.response;
 
+import am.shop.model.Gender;
+import am.shop.model.UserStatus;
 
-import am.shop.model.*;
+
 import lombok.Data;
-import java.util.Set;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class UserResponseDto {
+
+    private long id;
 
     private String firstName;
 
@@ -18,21 +23,36 @@ public class UserResponseDto {
 
     private long dob;
 
-    private Address address;
-
     private UserStatus status;
 
-    private Set<Role> roles;
+    private long updatedAt;
 
-    public UserResponseDto(User user) {
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.email = user.getEmail();
-        this.gender = user.getGender();
-        this.dob = user.getDob();
-        this.address = user.getAddress();
-        this.status = user.getStatus();
-        this.roles = user.getRoles();
+    private String city;
 
+    private String state;
+
+    private String country;
+
+    private String zipCode;
+
+    private String address;
+
+    public UserResponseDto(long id, String firstName, String lastName, String email, Gender gender,
+                           long dob, UserStatus status, long updatedAt, String city, String state,
+                           String country, String zipCode, String address) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.dob = dob;
+        this.status = status;
+        this.updatedAt = updatedAt;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.zipCode = zipCode;
+        this.address = address;
     }
 }
+

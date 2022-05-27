@@ -47,10 +47,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers(HttpMethod.GET, "/swagger-ui.html/**", "/swagger-resources/**","/user/{id}","/user")
+                .antMatchers(HttpMethod.GET, "/swagger-ui.html/**", "/swagger-resources/**","/user/for-all/**")
                 .antMatchers(HttpMethod.POST, "/user")
                 .antMatchers(HttpMethod.PUT, "/user/forgot-password", "/user/change-password")
-                .antMatchers(HttpMethod.PATCH, "user/verify**");
-        //.antMatchers(HttpMethod.GET,"/user/get-all");
+                .antMatchers(HttpMethod.PATCH, "user/verify**","/user/for-all/**","for-all/verify");
+                //.antMatchers(HttpMethod.GET,"/user/get-all");
     }
 }

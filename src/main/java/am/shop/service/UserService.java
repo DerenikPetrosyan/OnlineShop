@@ -2,6 +2,8 @@ package am.shop.service;
 
 
 import am.shop.model.User;
+import am.shop.model.dto.request.EditUserDto;
+import am.shop.model.dto.request.ResetPasswordDto;
 import am.shop.model.dto.request.UserRequestDto;
 import am.shop.model.dto.response.UserResponseDto;
 import am.shop.util.exceptions.BadRequestException;
@@ -17,7 +19,16 @@ public interface UserService  {
 
     void  createUser(UserRequestDto dto) throws DuplicateException, BadRequestException, NotFoundExcaption;
 
-    UserResponseDto getById(long id);
+    UserResponseDto getUserInfo(long id);
 
    List<UserResponseDto>  getByAll();
+
+
+    void forgotPassword(String email) throws NotFoundExcaption;
+
+    void resetPassword(ResetPasswordDto dto) throws NotFoundExcaption, BadRequestException;
+
+    void editUser(EditUserDto dto) throws NotFoundExcaption;
+
+    void verify(String email,String code) throws NotFoundExcaption, BadRequestException;
 }
