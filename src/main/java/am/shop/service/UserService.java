@@ -31,4 +31,6 @@ public interface UserService  {
     void editUser(EditUserDto dto) throws NotFoundExcaption;
 
     void verify(String email,String code) throws NotFoundExcaption, BadRequestException;
+
+    void changePassword(String emale, String oldPassword, String newPassword) throws BadRequestException;
 }

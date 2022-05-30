@@ -56,4 +56,9 @@ public class AddressServiceImpl implements AddressService {
             throw new NotFoundExcaption("not found country");
         }
     }
+
+    @Override
+    public void editAddress(Address address) {
+        addressRepository.save(address);
+    }
 }

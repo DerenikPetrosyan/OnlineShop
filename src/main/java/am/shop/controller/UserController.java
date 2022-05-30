@@ -66,5 +66,12 @@ public class UserController {
         userService.verify(email,code);
         return ResponseEntity.ok().build();
     }
+
+    @PatchMapping("for-all/change-password")
+    public ResponseEntity<Void> changePassword(@RequestParam String emale,
+                                               @RequestParam String oldPassword,@RequestParam String newPassword) throws BadRequestException {
+        userService.changePassword(emale,oldPassword,newPassword);
+        return ResponseEntity.ok().build();
+    }
 }
 

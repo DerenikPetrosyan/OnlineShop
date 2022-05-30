@@ -1,8 +1,6 @@
 package am.shop.service.impl;
 
-import am.shop.model.Role;
-import am.shop.model.User;
-import am.shop.model.UserStatus;
+import am.shop.model.*;
 import am.shop.model.dto.request.EditUserDto;
 import am.shop.model.dto.request.ResetPasswordDto;
 import am.shop.model.dto.request.UserRequestDto;
@@ -85,8 +83,10 @@ public class UsetServiceImpl implements UserService {
             throw new DuplicateException();
         } else if (dto.getPassword().compareTo(dto.getConfirmPassword()) != 0) {
             throw new BadRequestException();
+        } else if (addressService.getById(dto.getAddress().getId()) == null) {
+            throw new NotFoundExcaption();
         }
-        addressService.addressCreationChecks(dto.getAddress());
+//        addressService.addressCreationChecks(dto.getAddress());
     }
 
     @Override
@@ -128,18 +128,26 @@ public class UsetServiceImpl implements UserService {
 
     @Override
     public void editUser(EditUserDto dto) throws NotFoundExcaption {
+
         if (userRepository.existsById(dto.getId())) {
             User user = userRepository.getById(dto.getId());
-            user.setFirstName(dto.getFirstName());
-            user.setLastName(dto.getLastName());
-            user.setGender(dto.getGender());
-            user.setDob(dto.getDob());
-            user.setAddress(dto.getAddress());
+
+            if (dto.getFirstName() != null) {
+                user.setFirstName(dto.getFirstName());
+            } else if (dto.getLastName() != null) {
+                user.setLastName(dto.getLastName());
+            } else if (dto.getGender() != null) {
+                user.setGender(dto.getGender());
+            } else if (dto.getDob() != 0) {
+                user.setDob(dto.getDob());
+            } else {
+                throw new NotFoundExcaption();
+            }
 
             userRepository.save(user);
-        } else {
-            throw new NotFoundExcaption("not found user");
         }
+
+
     }
 
     @Transactional(rollbackFor = {BadRequestException.class, NotFoundExcaption.class})
@@ -152,5 +160,18 @@ public class UsetServiceImpl implements UserService {
         }
         userRepository.verify(email);
 
+    }
+
+    @Override
+    public void changePassword(String emale, String oldPassword, String newPassword) throws BadRequestException {
+        User user =userRepository.getByEmail(emale);
+        String password =user.getPassword();
+        if(password.equals(passwordEncoder.encode(oldPassword))){
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+        }
+        else {
+            throw new BadRequestException();
+        }
     }
 }

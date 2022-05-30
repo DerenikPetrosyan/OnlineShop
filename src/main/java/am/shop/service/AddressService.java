@@ -13,4 +13,8 @@ public interface AddressService {
     List<Address> getByAll() throws NotFoundExcaption;
 
     void crateAddress(Address address) throws DuplicateException, NotFoundExcaption;
+
+    void editAddress(Address address);
+
+
 }

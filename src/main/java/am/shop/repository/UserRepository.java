@@ -1,5 +1,6 @@
 package am.shop.repository;
 
+import am.shop.model.Gender;
 import am.shop.model.User;
 import am.shop.model.dto.response.UserResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -42,6 +43,14 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "u.address.zipCode,u.address.address) " +
             "from User u"+" left JOIN  State  s on (s.id = u.address.state.id)")
     List<UserResponseDto> getAll();
+
+
+//    @Query("update User u set  u.firstName = ?2 ,u.lastName = ?3 ," +
+//            "u.gender = ?4 ,u.dob = ?5 ,u.address.city.city = ?6 ,u.address.state.state = ?7,u.address.country.country = ?8," +
+//            "u.address.zipCode = ?9 ,u.address.address = ?10 " +
+//            " where u.id = ?1 ")
+//    UserResponseDto editUserInfo(long id, String firstName, String lastName, Gender gender, long dob,
+//                                 String city, String state, String country, String zipCode, String address);
 
 
 }

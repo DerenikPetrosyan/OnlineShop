@@ -1,13 +1,13 @@
 package am.shop.model.dto.request;
 
-import am.shop.model.Address;
 import am.shop.model.Gender;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Data
+@NoArgsConstructor
 public class EditUserDto {
 
     @NotNull
@@ -21,8 +21,12 @@ public class EditUserDto {
 
     private long dob;
 
-    @ManyToOne
-    private Address address;
 
-
+    public EditUserDto(long id, String firstName, String lastName, Gender gender, long dob) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.dob = dob;
+    }
 }
