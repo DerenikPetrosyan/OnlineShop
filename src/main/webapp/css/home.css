@@ -1,0 +1,56 @@
+body{
+    background: url("img_2.png");
+    width: 100%;
+    height:100%;
+}
+.parent{
+
+}
+.child1{
+    display:inline-block;
+    width: 100%;
+    height: 100px;
+    margin: 10px 10px 20px 50px;
+
+}
+.child1 .textIcon{
+    font-size: 100px;
+    color: #C4109A;
+    font-family: 'Dancing Script', cursive;
+    margin: 0 100px;
+
+}
+.child1 > img{
+    width: 20%;
+    height: 100%;
+}
+.child1_1 > img {
+    position: absolute;
+    display: block;
+    width: 5%;
+    height: 10%;
+    top: 50px;
+    right: 50px;
+
+}
+
+
+
+
+.child2{
+    display: inline-block;
+    background: aqua;
+    border: black;
+    width: 100%;
+    height: 50px;
+    margin: 10px ;
+}
+.child3{
+    display: inline-block;
+    background: aqua;
+    border: black;
+    width: 100%;
+    height: 100px;
+
+    margin: 10px ;
+}

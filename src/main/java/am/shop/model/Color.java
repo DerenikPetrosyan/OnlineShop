@@ -1,6 +1,5 @@
 package am.shop.model;
 
-
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -11,24 +10,12 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
-public class Product {
+public class Color {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @NotBlank
-    private String name;
-
-    private String description;
-
-    @NotBlank
-    private String type;
-
-    private int count;
-
-    private float price;
-
-    private long date;
-
+    private String colorName;
 }
