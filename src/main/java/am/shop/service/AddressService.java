@@ -1,6 +1,7 @@
 package am.shop.service;
 
 import am.shop.model.Address;
+import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 
@@ -12,9 +13,9 @@ public interface AddressService {
 
     List<Address> getByAll() throws NotFoundExcaption;
 
-    void crateAddress(Address address) throws DuplicateException, NotFoundExcaption;
+    void crateAddress(Address address) throws DuplicateException, NotFoundExcaption, BadRequestException;
 
-    void editAddress(Address address);
+    void editAddress(Address address) throws NotFoundExcaption, BadRequestException;
 
 
 }

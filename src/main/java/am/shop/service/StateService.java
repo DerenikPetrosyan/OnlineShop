@@ -16,4 +16,8 @@ public interface StateService {
     List<State> getByCountryId(int countryId);
 
     void crateState(State state) throws DuplicateException, NotFoundExcaption;
+
+    boolean existsById(int id);
+
+    State getStateByState(String state);
 }

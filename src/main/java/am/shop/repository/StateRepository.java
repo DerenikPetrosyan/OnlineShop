@@ -11,6 +11,8 @@ public interface StateRepository extends JpaRepository<State,Integer> {
 
     List<State> getByCountryId(int countryid);
 
+    State getStateByState(String state);
+
     @Override
     List<State> findAll();
 }

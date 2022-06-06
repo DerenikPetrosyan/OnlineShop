@@ -7,8 +7,7 @@ import java.util.List;
 
 public interface AddressRepository extends JpaRepository<Address,Long> {
 
-    int countByAddress(Address address);
-
     @Override
     List<Address> findAll();
+
 }

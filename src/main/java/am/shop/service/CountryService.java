@@ -13,4 +13,7 @@ public interface CountryService {
     List<Country> getByAll() throws NotFoundExcaption;
 
     void crateCountry(Country country) throws DuplicateException;
+
+    boolean existsById(int id);
+
 }

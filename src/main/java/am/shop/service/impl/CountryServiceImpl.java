@@ -37,9 +37,16 @@ public class CountryServiceImpl implements CountryService {
     }
 
     private void countryCreationChecks(Country country) throws DuplicateException {
+
         int dupCount = countryRepository.countByCountry(country.getCountry());
         if (dupCount > 0) {
             throw new DuplicateException("duplication country");
         }
     }
+
+    @Override
+    public boolean existsById(int id){
+        return countryRepository.existsById(id);
+    }
+
 }

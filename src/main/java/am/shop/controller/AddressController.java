@@ -4,6 +4,7 @@ package am.shop.controller;
 import am.shop.model.Address;
 import am.shop.model.dto.request.EditUserDto;
 import am.shop.service.AddressService;
+import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,12 @@ public class AddressController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> crateAddress(@Valid  @RequestBody Address address) throws DuplicateException, NotFoundExcaption {
+    public ResponseEntity<Void> crateAddress(@Valid  @RequestBody Address address) throws DuplicateException, NotFoundExcaption, BadRequestException {
         addressService.crateAddress(address);
         return ResponseEntity.ok().build();
     }
     @PatchMapping("edit-address")
-    public ResponseEntity<Void> editAddress(@Valid@RequestBody Address address) throws NotFoundExcaption {
+    public ResponseEntity<Void> editAddress(@Valid@RequestBody Address address) throws NotFoundExcaption, BadRequestException {
         addressService.editAddress(address);
         return ResponseEntity.ok().build();
     }

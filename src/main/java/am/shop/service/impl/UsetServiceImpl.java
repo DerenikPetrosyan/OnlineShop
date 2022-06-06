@@ -71,6 +71,7 @@ public class UsetServiceImpl implements UserService {
 
         user.setVerCode(RandomString.make(6));
 
+
         user.setAddress(dto.getAddress());
 
         userRepository.save(user);
@@ -81,12 +82,11 @@ public class UsetServiceImpl implements UserService {
 
         if (userRepository.existsByEmail(dto.getEmail())) {
             throw new DuplicateException();
-        } else if (dto.getPassword().compareTo(dto.getConfirmPassword()) != 0) {
-            throw new BadRequestException();
-        } else if (addressService.getById(dto.getAddress().getId()) == null) {
-            throw new NotFoundExcaption();
         }
-//        addressService.addressCreationChecks(dto.getAddress());
+        else if (dto.getPassword().compareTo(dto.getConfirmPassword()) != 0) {
+            throw new BadRequestException();
+        }
+        addressService.addressCreationChecks(dto.getAddress());
     }
 
     @Override
@@ -164,13 +164,12 @@ public class UsetServiceImpl implements UserService {
 
     @Override
     public void changePassword(String emale, String oldPassword, String newPassword) throws BadRequestException {
-        User user =userRepository.getByEmail(emale);
-        String password =user.getPassword();
-        if(password.equals(passwordEncoder.encode(oldPassword))){
+        User user = userRepository.getByEmail(emale);
+        String password = user.getPassword();
+        if (password.equals(passwordEncoder.encode(oldPassword))) {
             user.setPassword(passwordEncoder.encode(newPassword));
             userRepository.save(user);
-        }
-        else {
+        } else {
             throw new BadRequestException();
         }
     }

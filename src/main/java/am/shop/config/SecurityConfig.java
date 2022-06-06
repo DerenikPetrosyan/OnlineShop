@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    //sranov pagum enq bolor harcumner@
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -35,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
+    //stexov toxum enq miayn username u passwordov
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -43,15 +45,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder);
     }
 
+    //stexov bacum enq harcumner@
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
                 .antMatchers(HttpMethod.GET, "/swagger-ui.html/**", "/swagger-resources/**","/user/for-all/**",
-                        "/user","/items/**")
-                .antMatchers(HttpMethod.POST, "/user","/items","/address","/city","/country","/state")
+                        "/user","/items/**","/address/**","/brand/**","/category/**","/city/**","/color/**",
+                        "/country/**","/state/**")
+                .antMatchers(HttpMethod.POST, "/user","/items","/address","/city","/country","/state","/brand",
+                        "/category","/color")
                 .antMatchers(HttpMethod.PUT, "/user/forgot-password", "/user/change-password")
-                .antMatchers(HttpMethod.PATCH, "user/verify**","/user/for-all/**","/address/**","/items");
+                .antMatchers(HttpMethod.PATCH, "user/verify**","/user/for-all/**","/address/**","/items",
+                        "/brand/**","/category/**","/city/**","/color/**","/state/**");
                 //.antMatchers(HttpMethod.GET,"/user/get-all");
     }
 }

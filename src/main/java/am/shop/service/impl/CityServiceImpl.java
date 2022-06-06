@@ -2,7 +2,6 @@ package am.shop.service.impl;
 
 
 import am.shop.model.City;
-import am.shop.model.State;
 import am.shop.repository.CityRepository;
 import am.shop.service.CityService;
 import am.shop.service.CountryService;
@@ -67,5 +66,10 @@ public class CityServiceImpl implements CityService {
     @Override
     public List<City> getByCountryId(int countryid) {
         return cityRepository.getByCountryId(countryid);
+    }
+
+    @Override
+    public boolean existsById(long id) {
+        return cityRepository.existsById(id);
     }
 }

@@ -8,6 +8,8 @@ import java.util.List;
 public interface CountryRepository extends JpaRepository<Country,Integer> {
     int countByCountry(String country);
 
+    Country getCountryByCountry(String country);
+
     @Override
     List<Country> findAll();
 }

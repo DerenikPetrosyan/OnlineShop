@@ -36,7 +36,7 @@ public class StateServiceImpl implements StateService {
     }
 
     @Override
-    public List<State> getByCountryId(int countryId){
+    public List<State> getByCountryId(int countryId) {
         return stateRepository.getByCountryId(countryId);
     }
 
@@ -52,9 +52,19 @@ public class StateServiceImpl implements StateService {
         Country country = countryService.getById(state.getCountry().getId());
         if (dupCount > 0) {
             throw new DuplicateException("duplication state");
-        }
-        else  if(country == null){
+        } else if (country == null) {
             throw new NotFoundExcaption("not found country");
         }
     }
+
+    @Override
+    public boolean existsById(int id ){
+        return stateRepository.existsById(id);
+    }
+
+    @Override
+    public State getStateByState(String state) {
+        return stateRepository.getStateByState(state);
+    }
+
 }
