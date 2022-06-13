@@ -1,7 +1,7 @@
 package am.shop.repository;
 
-import am.shop.model.Gender;
 import am.shop.model.User;
+import am.shop.model.dto.response.UserInfoParser;
 import am.shop.model.dto.response.UserResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -45,12 +45,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<UserResponseDto> getAll();
 
 
-//    @Query("update User u set  u.firstName = ?2 ,u.lastName = ?3 ," +
-//            "u.gender = ?4 ,u.dob = ?5 ,u.address.city.city = ?6 ,u.address.state.state = ?7,u.address.country.country = ?8," +
-//            "u.address.zipCode = ?9 ,u.address.address = ?10 " +
-//            " where u.id = ?1 ")
-//    UserResponseDto editUserInfo(long id, String firstName, String lastName, Gender gender, long dob,
-//                                 String city, String state, String country, String zipCode, String address);
+    @Query(nativeQuery = true, value = "select id as id, first_name as firstName, last_name as lastName," +
+            " email as email from user" +
+            " where if(?1 is not null, first_name like concat(?1, '%'), true)" +
+            "and if(?2 is not null, last_name like concat(?2,'%'),true)")
+    List<UserInfoParser> search(String name, String surname);
 
 
 }

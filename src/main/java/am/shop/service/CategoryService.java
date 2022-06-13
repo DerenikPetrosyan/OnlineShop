@@ -3,6 +3,7 @@ package am.shop.service;
 
 import am.shop.model.Category;
 import am.shop.util.exceptions.BadRequestException;
+import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface CategoryService {
 
     List<Category> getByAll() throws NotFoundExcaption;
 
-    void crateCategory(Category category) ;
+    void crateCategory(Category category) throws DuplicateException;
 
-    void editCategory(Category category) ;
+    void editCategory(Category category) throws DuplicateException;
 }

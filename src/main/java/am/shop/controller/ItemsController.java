@@ -1,6 +1,8 @@
 package am.shop.controller;
 
 import am.shop.model.Items;
+import am.shop.model.dto.response.ItemsInfoPaser;
+import am.shop.model.dto.response.UserInfoParser;
 import am.shop.service.ItemsService;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.NotFoundExcaption;
@@ -34,10 +36,17 @@ public class ItemsController {
         itemsService.crateItems(items);
         return ResponseEntity.ok().build();
     }
+
     @PatchMapping("edit-items")
-    public ResponseEntity<Void> editItems(@Valid@RequestBody Items items)  {
+    public ResponseEntity<Void> editItems(@Valid @RequestBody Items items) throws BadRequestException {
         itemsService.editItems(items);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping("/search")
+    public ResponseEntity<List<ItemsInfoPaser>> search(@RequestParam(required = false) String name,
+                                                       @RequestParam(required = false) String brand,
+                                                       @RequestParam(required = false) String category) {
+        return ResponseEntity.ok(itemsService.search(name,brand,category));
     }
 
 }

@@ -39,7 +39,15 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void editBrand(Brand brand)  {
+    public void editBrand(Brand brand) throws BadRequestException {
+        if(!countryService.existsById(brand.getCountry().getId())){
+            throw new BadRequestException();
+        }
+        else if(brandRepository.existsByBrandName(brand.getBrandName())){
+            throw new BadRequestException();
+        }
+        brandRepository.save(brand);
 
     }
 }
+

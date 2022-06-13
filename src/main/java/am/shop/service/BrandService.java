@@ -12,7 +12,8 @@ public interface BrandService {
 
     List<Brand> getByAll() throws NotFoundExcaption;
 
-    void crateBrand(Brand brand) throws  BadRequestException;
+    void crateBrand(Brand brand) throws BadRequestException;
 
     void editBrand(Brand brand) throws NotFoundExcaption, BadRequestException;
+    
 }

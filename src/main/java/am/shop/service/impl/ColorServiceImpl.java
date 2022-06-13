@@ -35,7 +35,10 @@ public class ColorServiceImpl implements ColorService {
     }
 
     @Override
-    public void editColor(Color color) {
-
+    public void editColor(Color color) throws DuplicateException {
+        if(colorRepository.existsColorByColorName(color.getColorName())){
+            throw new DuplicateException();
+        }
+        colorRepository.save(color);
     }
 }

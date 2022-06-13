@@ -72,4 +72,10 @@ public class CityServiceImpl implements CityService {
     public boolean existsById(long id) {
         return cityRepository.existsById(id);
     }
+
+    @Override
+    public void editCity(City city) throws NotFoundExcaption, DuplicateException {
+        cityCreationChecks(city);
+        cityRepository.save(city);
+    }
 }

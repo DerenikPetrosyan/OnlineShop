@@ -36,7 +36,7 @@ public class ColorController {
         return ResponseEntity.ok().build();
     }
     @PatchMapping("edit-color")
-    public ResponseEntity<Void> editColor(@Valid@RequestBody Color color)  {
+    public ResponseEntity<Void> editColor(@Valid@RequestBody Color color) throws DuplicateException {
         colorService.editColor(color);
         return ResponseEntity.ok().build();
     }

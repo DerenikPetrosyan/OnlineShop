@@ -5,6 +5,7 @@ import am.shop.model.User;
 import am.shop.model.dto.request.EditUserDto;
 import am.shop.model.dto.request.ResetPasswordDto;
 import am.shop.model.dto.request.UserRequestDto;
+import am.shop.model.dto.response.UserInfoParser;
 import am.shop.model.dto.response.UserResponseDto;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
@@ -33,4 +34,6 @@ public interface UserService  {
     void verify(String email,String code) throws NotFoundExcaption, BadRequestException;
 
     void changePassword(String emale, String oldPassword, String newPassword) throws BadRequestException;
+
+    List<UserInfoParser> search(String name, String surname);
 }

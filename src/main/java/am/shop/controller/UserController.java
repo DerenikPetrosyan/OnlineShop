@@ -3,6 +3,7 @@ package am.shop.controller;
 import am.shop.model.dto.request.EditUserDto;
 import am.shop.model.dto.request.ResetPasswordDto;
 import am.shop.model.dto.request.UserRequestDto;
+import am.shop.model.dto.response.UserInfoParser;
 import am.shop.model.dto.response.UserResponseDto;
 import am.shop.service.UserService;
 import am.shop.util.exceptions.BadRequestException;
@@ -72,6 +73,12 @@ public class UserController {
                                                @RequestParam String oldPassword,@RequestParam String newPassword) throws BadRequestException {
         userService.changePassword(emale,oldPassword,newPassword);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/for-all/search")
+    public ResponseEntity<List<UserInfoParser>> search(@RequestParam(required = false) String name,
+                                                       @RequestParam(required = false) String surname) {
+        return ResponseEntity.ok(userService.search(name,surname));
     }
 }
 

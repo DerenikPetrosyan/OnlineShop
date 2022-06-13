@@ -4,6 +4,7 @@ import am.shop.model.*;
 import am.shop.model.dto.request.EditUserDto;
 import am.shop.model.dto.request.ResetPasswordDto;
 import am.shop.model.dto.request.UserRequestDto;
+import am.shop.model.dto.response.UserInfoParser;
 import am.shop.model.dto.response.UserResponseDto;
 import am.shop.repository.UserRepository;
 import am.shop.service.UserService;
@@ -172,5 +173,11 @@ public class UsetServiceImpl implements UserService {
         } else {
             throw new BadRequestException();
         }
+    }
+
+
+    @Override
+    public List<UserInfoParser> search(String name, String surname) {
+        return userRepository.search(name, surname);
     }
 }

@@ -2,6 +2,7 @@ package am.shop.controller;
 
 
 import am.shop.model.City;
+import am.shop.model.Color;
 import am.shop.model.State;
 import am.shop.service.CityService;
 import am.shop.util.exceptions.DuplicateException;
@@ -40,6 +41,12 @@ public class CityController {
     @PostMapping
     public ResponseEntity<Void> crateState(@Valid @RequestBody City city) throws DuplicateException, NotFoundExcaption {
         cityService.crateCity(city);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("edit-city")
+    public ResponseEntity<Void> editCity(@Valid@RequestBody City city) throws DuplicateException, NotFoundExcaption {
+        cityService.editCity(city);
         return ResponseEntity.ok().build();
     }
 

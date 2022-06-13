@@ -3,6 +3,7 @@ package am.shop.controller;
 
 import am.shop.model.Category;
 import am.shop.service.CategoryService;
+import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +29,12 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> crateCategory(@Valid @RequestBody Category category)  {
+    public ResponseEntity<Void> crateCategory(@Valid @RequestBody Category category) throws DuplicateException {
         categoryService.crateCategory(category);
         return ResponseEntity.ok().build();
     }
     @PatchMapping("edit-category")
-    public ResponseEntity<Void> editCategory(@Valid@RequestBody Category category)  {
+    public ResponseEntity<Void> editCategory(@Valid@RequestBody Category category) throws DuplicateException {
         categoryService.editCategory(category);
         return ResponseEntity.ok().build();
     }

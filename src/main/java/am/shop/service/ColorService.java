@@ -14,5 +14,5 @@ public interface ColorService {
 
     void crateColor(Color color) throws DuplicateException;
 
-    void editColor(Color color);
+    void editColor(Color color) throws DuplicateException;
 }

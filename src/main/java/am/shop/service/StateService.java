@@ -20,4 +20,6 @@ public interface StateService {
     boolean existsById(int id);
 
     State getStateByState(String state);
+
+    void editState(State state) throws NotFoundExcaption, DuplicateException;
 }

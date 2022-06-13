@@ -1,6 +1,7 @@
 package am.shop.controller;
 
 import am.shop.model.State;
+import am.shop.model.dto.request.EditUserDto;
 import am.shop.service.StateService;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
@@ -35,6 +36,12 @@ public class StateController {
     @PostMapping
     public ResponseEntity<Void> crateState(@Valid @RequestBody State state) throws DuplicateException, NotFoundExcaption {
         stateService.crateState(state);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/edit-state")
+    public ResponseEntity<Void> editState(@Valid@RequestBody State state) throws NotFoundExcaption, DuplicateException {
+        stateService.editState(state);
         return ResponseEntity.ok().build();
     }
 

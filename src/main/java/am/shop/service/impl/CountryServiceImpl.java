@@ -49,4 +49,9 @@ public class CountryServiceImpl implements CountryService {
         return countryRepository.existsById(id);
     }
 
+    @Override
+    public void editCountry(Country country) throws DuplicateException {
+        countryCreationChecks(country);
+        countryRepository.save(country);
+    }
 }

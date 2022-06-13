@@ -4,6 +4,7 @@ import am.shop.model.Category;
 import am.shop.repository.CategoryRepository;
 import am.shop.service.CategoryService;
 import am.shop.util.exceptions.BadRequestException;
+import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,12 +27,18 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void crateCategory(Category category){
+    public void crateCategory(Category category) throws DuplicateException {
+        if(categoryRepository.existsByCategoryName(category.getCategoryName())){
+            throw new DuplicateException();
+        }
         categoryRepository.save(category);
     }
 
     @Override
-    public void editCategory(Category category){
+    public void editCategory(Category category) throws DuplicateException {
+        if(categoryRepository.existsByCategoryName(category.getCategoryName())){
+            throw new DuplicateException();
+        }
         categoryRepository.save(category);
     }
 }

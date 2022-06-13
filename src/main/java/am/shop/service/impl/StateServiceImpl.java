@@ -58,7 +58,7 @@ public class StateServiceImpl implements StateService {
     }
 
     @Override
-    public boolean existsById(int id ){
+    public boolean existsById(int id) {
         return stateRepository.existsById(id);
     }
 
@@ -67,4 +67,13 @@ public class StateServiceImpl implements StateService {
         return stateRepository.getStateByState(state);
     }
 
+    @Override
+    public void editState(State state) throws NotFoundExcaption, DuplicateException {
+
+        stateCreationChecks(state);
+        State state1 = stateRepository.getById(state.getId());
+        state1.setState(state.getState());
+        state1.setCountry(state.getCountry());
+        stateRepository.save(state1);
+    }
 }

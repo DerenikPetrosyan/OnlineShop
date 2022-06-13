@@ -1,7 +1,6 @@
 package am.shop.service;
 
 import am.shop.model.City;
-import am.shop.model.Color;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 
@@ -19,4 +18,6 @@ public interface CityService {
     List<City> getByCountryId(int countryid);
 
     boolean existsById(long id);
+
+    void editCity(City city) throws NotFoundExcaption, DuplicateException;
 }

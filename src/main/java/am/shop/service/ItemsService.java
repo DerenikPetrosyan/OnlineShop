@@ -1,6 +1,8 @@
 package am.shop.service;
 
 import am.shop.model.Items;
+import am.shop.model.dto.response.ItemsInfoPaser;
+import am.shop.model.dto.response.UserInfoParser;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.NotFoundExcaption;
 
@@ -13,5 +15,7 @@ public interface ItemsService {
 
     void crateItems(Items items) throws BadRequestException;
 
-    void editItems(Items items);
+    void editItems(Items items) throws BadRequestException;
+
+    List<ItemsInfoPaser> search(String name, String brand, String category);
 }

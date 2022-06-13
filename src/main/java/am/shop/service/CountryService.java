@@ -16,4 +16,5 @@ public interface CountryService {
 
     boolean existsById(int id);
 
+    void editCountry(Country country) throws DuplicateException;
 }
