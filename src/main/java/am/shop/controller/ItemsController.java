@@ -2,7 +2,6 @@ package am.shop.controller;
 
 import am.shop.model.Items;
 import am.shop.model.dto.response.ItemsInfoPaser;
-import am.shop.model.dto.response.UserInfoParser;
 import am.shop.service.ItemsService;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.NotFoundExcaption;
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -47,6 +47,16 @@ public class ItemsController {
                                                        @RequestParam(required = false) String brand,
                                                        @RequestParam(required = false) String category) {
         return ResponseEntity.ok(itemsService.search(name,brand,category));
+    }
+
+    @GetMapping("/priceExpensive")
+    public ResponseEntity<List<ItemsInfoPaser>> priceExpensive(@RequestParam BigDecimal price){
+        return ResponseEntity.ok(itemsService.priceExpensive(price));
+    }
+
+    @GetMapping("/priceCheap")
+    public ResponseEntity<List<ItemsInfoPaser>> priceCheap(@RequestParam BigDecimal price){
+        return ResponseEntity.ok(itemsService.priceCheap(price));
     }
 
 }

@@ -1,9 +1,7 @@
 package am.shop.controller;
 
 
-import am.shop.model.Category;
 import am.shop.model.Color;
-import am.shop.service.CategoryService;
 import am.shop.service.ColorService;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;

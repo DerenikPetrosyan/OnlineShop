@@ -2,8 +2,6 @@ package am.shop.controller;
 
 
 import am.shop.model.City;
-import am.shop.model.Color;
-import am.shop.model.State;
 import am.shop.service.CityService;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;

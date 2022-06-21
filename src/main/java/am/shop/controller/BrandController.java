@@ -3,7 +3,6 @@ package am.shop.controller;
 import am.shop.model.Brand;
 import am.shop.service.BrandService;
 import am.shop.util.exceptions.BadRequestException;
-import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

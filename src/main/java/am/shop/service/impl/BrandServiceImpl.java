@@ -5,7 +5,6 @@ import am.shop.repository.BrandRepository;
 import am.shop.service.BrandService;
 import am.shop.service.CountryService;
 import am.shop.util.exceptions.BadRequestException;
-import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

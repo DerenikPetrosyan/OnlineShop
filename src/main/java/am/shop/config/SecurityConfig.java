@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/user","/items/**","/address/**","/brand/**","/category/**","/city/**","/color/**",
                         "/country/**","/state/**")
                 .antMatchers(HttpMethod.POST, "/user","/items","/address","/city","/country","/state","/brand",
-                        "/category","/color")
+                        "/category","/color","/user/for-all/**")
                 .antMatchers(HttpMethod.PUT, "/user/forgot-password", "/user/change-password")
                 .antMatchers(HttpMethod.PATCH, "user/verify**","/user/for-all/**","/address/**","/items/**",
                         "/brand/**","/category/**","/city/**","/color/**","/state/**","/country/**");

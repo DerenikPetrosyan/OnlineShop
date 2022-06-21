@@ -10,4 +10,5 @@ public interface AddressRepository extends JpaRepository<Address,Long> {
     @Override
     List<Address> findAll();
 
+
 }

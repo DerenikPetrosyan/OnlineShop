@@ -62,13 +62,13 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("for-all/verify")
+    @PatchMapping("/for-all/verify")
     public ResponseEntity<Void> verify(@RequestParam String email, @RequestParam String code) throws NotFoundExcaption, BadRequestException {
         userService.verify(email,code);
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping("for-all/change-password")
+    @PatchMapping("/for-all/change-password")
     public ResponseEntity<Void> changePassword(@RequestParam String emale,
                                                @RequestParam String oldPassword,@RequestParam String newPassword) throws BadRequestException {
         userService.changePassword(emale,oldPassword,newPassword);
@@ -79,6 +79,13 @@ public class UserController {
     public ResponseEntity<List<UserInfoParser>> search(@RequestParam(required = false) String name,
                                                        @RequestParam(required = false) String surname) {
         return ResponseEntity.ok(userService.search(name,surname));
+    }
+
+    @PostMapping("/for-all/sendEmail")
+    public ResponseEntity<Void> sendEmail(@RequestParam String toEmail, @RequestParam String subject ,
+                                          @RequestParam String body ){
+        userService.sendEmail(toEmail,subject,body);
+        return ResponseEntity.ok().build();
     }
 }
 

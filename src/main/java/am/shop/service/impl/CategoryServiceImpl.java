@@ -3,7 +3,6 @@ package am.shop.service.impl;
 import am.shop.model.Category;
 import am.shop.repository.CategoryRepository;
 import am.shop.service.CategoryService;
-import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;

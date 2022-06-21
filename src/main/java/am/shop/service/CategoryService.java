@@ -2,7 +2,6 @@ package am.shop.service;
 
 
 import am.shop.model.Category;
-import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 

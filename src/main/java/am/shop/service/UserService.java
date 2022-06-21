@@ -36,4 +36,6 @@ public interface UserService  {
     void changePassword(String emale, String oldPassword, String newPassword) throws BadRequestException;
 
     List<UserInfoParser> search(String name, String surname);
+
+     void sendEmail(String toEmail, String subject, String body);
 }

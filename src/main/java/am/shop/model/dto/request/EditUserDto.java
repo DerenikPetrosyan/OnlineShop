@@ -1,6 +1,7 @@
 package am.shop.model.dto.request;
 
 import am.shop.model.Gender;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class EditUserDto {
 
     @NotNull
@@ -22,11 +24,4 @@ public class EditUserDto {
     private long dob;
 
 
-    public EditUserDto(long id, String firstName, String lastName, Gender gender, long dob) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.dob = dob;
-    }
 }

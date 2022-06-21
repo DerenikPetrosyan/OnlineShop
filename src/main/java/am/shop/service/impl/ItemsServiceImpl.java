@@ -9,6 +9,7 @@ import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -53,5 +54,15 @@ public class ItemsServiceImpl implements ItemsService {
     @Override
     public List<ItemsInfoPaser> search(String name, String brand, String category) {
         return itemsRepository.search(name,brand,category);
+    }
+
+    @Override
+    public List<ItemsInfoPaser> priceExpensive(BigDecimal price) {
+        return itemsRepository.priceExpensive(price);
+    }
+
+    @Override
+    public List<ItemsInfoPaser> priceCheap(BigDecimal price) {
+        return itemsRepository.priceCheap(price);
     }
 }

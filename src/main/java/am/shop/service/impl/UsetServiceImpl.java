@@ -13,6 +13,8 @@ import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,9 @@ public class UsetServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -60,20 +65,22 @@ public class UsetServiceImpl implements UserService {
         user.setAddress(dto.getAddress());
         user.setUpdatedAt(System.currentTimeMillis());
 
-
         Set<Role> roles = new HashSet<>();
         Role role = new Role();
         role.setId(1);
         roles.add(role);
         user.setRoles(roles);
 
-
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
 
-        user.setVerCode(RandomString.make(6));
+        String varCod = RandomString.make(6);
+        user.setVerCode(varCod);
 
 
         user.setAddress(dto.getAddress());
+
+        sendEmail(user.getEmail(),"OlineSHop",varCod);
+
 
         userRepository.save(user);
 
@@ -179,5 +186,17 @@ public class UsetServiceImpl implements UserService {
     @Override
     public List<UserInfoParser> search(String name, String surname) {
         return userRepository.search(name, surname);
+    }
+
+    @Override
+    public void sendEmail(String toEmail, String subject, String body){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("derenikpetrosyan68@gmail.com");
+        message.setTo(toEmail);
+        message.setText(body);
+        message.setSubject(subject);
+
+        javaMailSender.send(message);
+
     }
 }

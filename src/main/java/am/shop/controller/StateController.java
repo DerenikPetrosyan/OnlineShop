@@ -1,7 +1,6 @@
 package am.shop.controller;
 
 import am.shop.model.State;
-import am.shop.model.dto.request.EditUserDto;
 import am.shop.service.StateService;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;

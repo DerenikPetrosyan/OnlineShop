@@ -4,11 +4,13 @@ import am.shop.model.Gender;
 import am.shop.model.UserStatus;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserResponseDto {
 
     private long id;
@@ -37,22 +39,5 @@ public class UserResponseDto {
 
     private String address;
 
-    public UserResponseDto(long id, String firstName, String lastName, String email, Gender gender,
-                           long dob, UserStatus status, long updatedAt, String city, String state,
-                           String country, String zipCode, String address) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.gender = gender;
-        this.dob = dob;
-        this.status = status;
-        this.updatedAt = updatedAt;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.zipCode = zipCode;
-        this.address = address;
-    }
 }
 
