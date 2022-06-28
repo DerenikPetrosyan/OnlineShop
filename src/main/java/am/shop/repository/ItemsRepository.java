@@ -2,6 +2,8 @@ package am.shop.repository;
 
 import am.shop.model.Items;
 import am.shop.model.dto.response.ItemsInfoPaser;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -33,4 +35,9 @@ public interface ItemsRepository extends JpaRepository<Items,Long> {
             "LEFT JOIN category ON category.id = items.category_id " +
             " WHERE price <= ?1")
     List<ItemsInfoPaser> priceCheap(BigDecimal price);
+
+
+    @Query(nativeQuery = true,value = "select * from items ",
+            countQuery = "select count(*) from items")
+    Page<Items> getItems(Pageable pageable);
 }

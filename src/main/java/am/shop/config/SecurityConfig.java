@@ -49,12 +49,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoring()
                 .antMatchers(HttpMethod.GET, "/swagger-ui.html/**", "/swagger-resources/**","/user/for-all/**",
                         "/user","/items/**","/address/**","/brand/**","/category/**","/city/**","/color/**",
-                        "/country/**","/state/**")
+                        "/country/**","/state/**","/basket/**")
                 .antMatchers(HttpMethod.POST, "/user","/items","/address","/city","/country","/state","/brand",
-                        "/category","/color","/user/for-all/**")
+                        "/category","/color","/user/for-all/**","/basket/**")
                 .antMatchers(HttpMethod.PUT, "/user/forgot-password", "/user/change-password")
                 .antMatchers(HttpMethod.PATCH, "user/verify**","/user/for-all/**","/address/**","/items/**",
-                        "/brand/**","/category/**","/city/**","/color/**","/state/**","/country/**");
+                        "/brand/**","/category/**","/city/**","/color/**","/state/**","/country/**","/basket/**");
                 //.antMatchers(HttpMethod.GET,"/user/get-all");
     }
 }

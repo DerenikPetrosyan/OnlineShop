@@ -7,6 +7,8 @@ import am.shop.service.ItemsService;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -30,6 +32,7 @@ public class ItemsServiceImpl implements ItemsService {
 
     @Override
     public void crateItems(Items items) throws BadRequestException {
+        items.setCreatedAt(System.currentTimeMillis());
         itemsCreationChecks(items);
         itemsRepository.save(items);
     }
@@ -64,5 +67,11 @@ public class ItemsServiceImpl implements ItemsService {
     @Override
     public List<ItemsInfoPaser> priceCheap(BigDecimal price) {
         return itemsRepository.priceCheap(price);
+    }
+
+    @Override
+    public Page<Items> pageRequest(Pageable pageable) {
+        Page<Items> itemsPage = itemsRepository.getItems(pageable);
+        return itemsPage;
     }
 }

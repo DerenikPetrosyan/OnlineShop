@@ -4,6 +4,8 @@ import am.shop.model.Items;
 import am.shop.model.dto.response.ItemsInfoPaser;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.NotFoundExcaption;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -22,4 +24,6 @@ public interface ItemsService {
     List<ItemsInfoPaser> priceExpensive(BigDecimal price);
 
     List<ItemsInfoPaser> priceCheap(BigDecimal price);
+
+    Page<Items> pageRequest(Pageable pageable);
 }

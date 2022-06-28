@@ -8,6 +8,7 @@ import am.shop.model.dto.response.UserInfoParser;
 import am.shop.model.dto.response.UserResponseDto;
 import am.shop.repository.UserRepository;
 import am.shop.service.UserService;
+//import am.shop.util.MailSender.MailSender;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
@@ -29,6 +30,10 @@ public class UsetServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+
+//    @Autowired(required = true)
+//    private MailSender mailSender;
+
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -37,6 +42,9 @@ public class UsetServiceImpl implements UserService {
 
     @Autowired
     private AddressServiceImpl addressService;
+
+    private int VER_TIME = 60*60*1000;
+
 
     @Override
     public User getByUsername(String username) throws NotFoundExcaption {
@@ -198,5 +206,6 @@ public class UsetServiceImpl implements UserService {
 
         javaMailSender.send(message);
 
+//        mailSender.sendEmail(toEmail,subject,body);
     }
 }

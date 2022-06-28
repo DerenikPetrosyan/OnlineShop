@@ -4,7 +4,6 @@ package am.shop.config;
 import am.shop.model.User;
 import am.shop.service.UserService;
 import am.shop.util.exceptions.NotFoundExcaption;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.GrantedAuthority;

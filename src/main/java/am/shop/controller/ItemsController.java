@@ -6,6 +6,8 @@ import am.shop.service.ItemsService;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +59,11 @@ public class ItemsController {
     @GetMapping("/priceCheap")
     public ResponseEntity<List<ItemsInfoPaser>> priceCheap(@RequestParam BigDecimal price){
         return ResponseEntity.ok(itemsService.priceCheap(price));
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<?> pageRequest(@PageableDefault Pageable pageable){
+         return ResponseEntity.ok(itemsService.pageRequest(pageable));
     }
 
 }
