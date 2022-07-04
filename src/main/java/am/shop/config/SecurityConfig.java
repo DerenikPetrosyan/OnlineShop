@@ -49,12 +49,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoring()
                 .antMatchers(HttpMethod.GET, "/swagger-ui.html/**", "/swagger-resources/**","/user/for-all/**",
                         "/user","/items/**","/address/**","/brand/**","/category/**","/city/**","/color/**",
-                        "/country/**","/state/**","/basket/**")
+                        "/country/**","/state/**","/basket/**","/payment_log/**","/user_balance/**","/user_items/**")
+
+
                 .antMatchers(HttpMethod.POST, "/user","/items","/address","/city","/country","/state","/brand",
-                        "/category","/color","/user/for-all/**","/basket/**")
+                        "/category","/color","/user/for-all/**","/basket/**","/payment_log/**","/user_balance/**"
+                        ,"/user_items/**")
+
+
                 .antMatchers(HttpMethod.PUT, "/user/forgot-password", "/user/change-password")
+
+
                 .antMatchers(HttpMethod.PATCH, "user/verify**","/user/for-all/**","/address/**","/items/**",
-                        "/brand/**","/category/**","/city/**","/color/**","/state/**","/country/**","/basket/**");
+                        "/brand/**","/category/**","/city/**","/color/**","/state/**","/country/**","/basket/**",
+                        "/payment_log/**","/user_balance/**","/user_items/**");
                 //.antMatchers(HttpMethod.GET,"/user/get-all");
     }
 }
