@@ -3,7 +3,7 @@ package am.shop.controller;
 
 import am.shop.model.PaymentLog;
 import am.shop.service.PaymentLogService;
-import am.shop.util.exceptions.DuplicateException;
+import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,19 +19,22 @@ public class PaymentLogController {
     @Autowired
     private PaymentLogService paymentLogService;
 
+    //get payment by id
     @GetMapping("/{id}")
     public PaymentLog getById(@PathVariable int id) throws NotFoundExcaption {
         return paymentLogService.getById(id);
     }
 
+    //get all payment
     @GetMapping
     public List<PaymentLog> getByAll() throws NotFoundExcaption {
         return paymentLogService.getByAll();
     }
 
-    @PostMapping
-    public ResponseEntity<Void> cratePaymentLog(@Valid @RequestBody PaymentLog paymentLog) throws DuplicateException {
-        paymentLogService.cratePaymentLog(paymentLog);
+    //payment Items
+    @PostMapping("/byItems")
+    public ResponseEntity<Void> byItems(@RequestParam long userId) throws   BadRequestException {
+        paymentLogService.byItems(userId);
         return ResponseEntity.ok().build();
     }
 }

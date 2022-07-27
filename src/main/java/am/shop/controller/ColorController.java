@@ -18,23 +18,28 @@ public class ColorController {
     @Autowired
     private ColorService colorService;
 
+    //get Color by id
     @GetMapping("/{id}")
     public Color getById(@PathVariable int id) throws NotFoundExcaption {
         return colorService.getById(id);
     }
 
+    //get all colors
     @GetMapping
     public List<Color> getByAll() throws NotFoundExcaption {
         return colorService.getByAll();
     }
 
+    //crate Color
     @PostMapping
-    public ResponseEntity<Void> crateColor(@Valid @RequestBody Color color) throws  DuplicateException {
+    public ResponseEntity<Void> crateColor(@Valid @RequestBody Color color) throws DuplicateException {
         colorService.crateColor(color);
         return ResponseEntity.ok().build();
     }
+
+    //edit Color
     @PatchMapping("edit-color")
-    public ResponseEntity<Void> editColor(@Valid@RequestBody Color color) throws DuplicateException {
+    public ResponseEntity<Void> editColor(@Valid @RequestBody Color color) throws DuplicateException {
         colorService.editColor(color);
         return ResponseEntity.ok().build();
     }

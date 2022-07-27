@@ -1,7 +1,15 @@
 package am.shop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class UserItems {
 
     @Id
@@ -19,6 +27,8 @@ public class UserItems {
     @ManyToOne
     @JoinColumn(name = "color_id")
     private  Color color;
+
+    private int count;
 
     private long cratedAt;
 }

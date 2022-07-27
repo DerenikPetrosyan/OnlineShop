@@ -29,4 +29,14 @@ public class BasketServiceImpl implements BasketService {
     public void crateBasket(Basket basket) {
         basketRepository.save(basket);
     }
+
+    @Override
+    public List<Basket> getByUserItems(long usrerId) {
+        return basketRepository.getByUserItems(usrerId);
+    }
+
+    @Override
+    public int getByCount(long id) {
+        return basketRepository.getByCount(id);
+    }
 }

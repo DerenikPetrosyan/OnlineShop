@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    //close all requests
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -35,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
+    //open requests for users
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
@@ -43,26 +45,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder);
     }
 
+    // open requests
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers(HttpMethod.GET, "/swagger-ui.html/**", "/swagger-resources/**","/user/for-all/**",
-                        "/user","/items/**","/address/**","/brand/**","/category/**","/city/**","/color/**",
-                        "/country/**","/state/**","/basket/**","/payment_log/**","/user_balance/**","/user_items/**")
+                .antMatchers(HttpMethod.GET, "/swagger-ui.html/**", "/swagger-resources/**", "/user/for-all/**",
+                        "/user", "/items/**", "/address/**", "/brand/**", "/category/**", "/city/**", "/color/**",
+                        "/country/**", "/state/**", "/basket/**", "/payment_log/**", "/user_balance/**", "/user_items/**")
 
 
-                .antMatchers(HttpMethod.POST, "/user","/items","/address","/city","/country","/state","/brand",
-                        "/category","/color","/user/for-all/**","/basket/**","/payment_log/**","/user_balance/**"
-                        ,"/user_items/**")
+                .antMatchers(HttpMethod.POST, "/user", "/items", "/address", "/city", "/country", "/state", "/brand",
+                        "/category", "/color", "/user/for-all/**", "/basket/**", "/payment_log/**", "/user_balance/**"
+                        , "/user_items/**")
 
 
                 .antMatchers(HttpMethod.PUT, "/user/forgot-password", "/user/change-password")
 
 
-                .antMatchers(HttpMethod.PATCH, "user/verify**","/user/for-all/**","/address/**","/items/**",
-                        "/brand/**","/category/**","/city/**","/color/**","/state/**","/country/**","/basket/**",
-                        "/payment_log/**","/user_balance/**","/user_items/**");
-                //.antMatchers(HttpMethod.GET,"/user/get-all");
+                .antMatchers(HttpMethod.PATCH, "user/verify**", "/user/for-all/**", "/address/**", "/items/**",
+                        "/brand/**", "/category/**", "/city/**", "/color/**", "/state/**", "/country/**", "/basket/**",
+                        "/payment_log/**", "/user_balance/**", "/user_items/**");
+        //.antMatchers(HttpMethod.GET,"/user/get-all");
     }
 }

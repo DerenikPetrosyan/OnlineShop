@@ -19,29 +19,34 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
+    //get city by id
     @GetMapping("/{id}")
     public City getById(@PathVariable int id) throws NotFoundExcaption {
         return cityService.getById(id);
     }
 
+    //get all city
     @GetMapping
     public List<City> getByAll() throws NotFoundExcaption {
         return cityService.getByAll();
     }
 
+    //get Cities where
     @GetMapping("/country/{countryid}")
     public ResponseEntity<List<City>> getByCountryId(@PathVariable int countryid){
         return ResponseEntity.ok(cityService.getByCountryId(countryid));
     }
 
 
-
+    // crate City
     @PostMapping
-    public ResponseEntity<Void> crateState(@Valid @RequestBody City city) throws DuplicateException, NotFoundExcaption {
+    public ResponseEntity<Void> crateCity(@Valid @RequestBody City city) throws DuplicateException, NotFoundExcaption {
         cityService.crateCity(city);
         return ResponseEntity.ok().build();
     }
 
+
+    //edit City
     @PatchMapping("edit-city")
     public ResponseEntity<Void> editCity(@Valid@RequestBody City city) throws DuplicateException, NotFoundExcaption {
         cityService.editCity(city);

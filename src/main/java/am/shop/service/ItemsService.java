@@ -26,4 +26,6 @@ public interface ItemsService {
     List<ItemsInfoPaser> priceCheap(BigDecimal price);
 
     Page<Items> pageRequest(Pageable pageable);
+
+    void subtractCountItems(long id , int count);
 }

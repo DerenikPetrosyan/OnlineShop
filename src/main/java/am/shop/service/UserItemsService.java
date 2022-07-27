@@ -5,7 +5,7 @@ import am.shop.model.UserItems;
 import java.util.List;
 
 public interface UserItemsService {
-    UserItems getById(int id);
+    UserItems getById(long id);
 
     List<UserItems> getByAll();
 

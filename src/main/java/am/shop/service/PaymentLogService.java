@@ -1,13 +1,14 @@
 package am.shop.service;
 
 import am.shop.model.PaymentLog;
+import am.shop.util.exceptions.BadRequestException;
 
 import java.util.List;
 
 public interface PaymentLogService {
-    PaymentLog getById(int id);
+    PaymentLog getById(long id);
 
     List<PaymentLog> getByAll();
 
-    void cratePaymentLog(PaymentLog paymentLog);
+    void byItems(long userId) throws BadRequestException;
 }

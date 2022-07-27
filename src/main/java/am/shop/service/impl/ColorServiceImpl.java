@@ -26,6 +26,7 @@ public class ColorServiceImpl implements ColorService {
         return colorRepository.findAll();
     }
 
+
     @Override
     public void crateColor(Color color) throws DuplicateException {
         if(colorRepository.existsColorByColorName(color.getColorName())){

@@ -13,9 +13,11 @@ public class PaymentLog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne
+   /* @ManyToOne
     @JoinColumn(name = "user_id")
-    private  User user;
+    private  User user;*/
+
+    private long userId;
 
     private BigDecimal amount;
 

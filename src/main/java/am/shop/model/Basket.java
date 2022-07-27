@@ -24,4 +24,6 @@ public class Basket {
     @ManyToOne
     @JoinColumn(name = "color_id")
     private Color color;
+
+    private int count;
 }

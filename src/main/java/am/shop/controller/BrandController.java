@@ -18,21 +18,26 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
+    //get brand by id
     @GetMapping("/{id}")
     public Brand getById(@PathVariable int id) throws NotFoundExcaption {
         return brandService.getById(id);
     }
 
+    //get all brand
     @GetMapping
     public List<Brand> getByAll() throws NotFoundExcaption {
         return brandService.getByAll();
     }
 
+    //crate new brand
     @PostMapping
     public ResponseEntity<Void> crateBrand(@Valid @RequestBody Brand brand) throws  BadRequestException {
         brandService.crateBrand(brand);
         return ResponseEntity.ok().build();
     }
+
+    //edit brand
     @PatchMapping("edit-brand")
     public ResponseEntity<Void> editBrand(@Valid@RequestBody Brand brand) throws NotFoundExcaption, BadRequestException {
         brandService.editBrand(brand);

@@ -12,10 +12,10 @@ public class UserBalance {
     @Id
     private long userId;
 
-    @MapsId
+   /* @MapsId
     @OneToOne
     @JoinColumn(name = "user_id")
-    private  User user;
+    private  User user;*/
 
 
     private BigDecimal balance;

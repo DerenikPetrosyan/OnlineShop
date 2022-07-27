@@ -20,6 +20,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
+    //Provides core user information
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user;

@@ -12,12 +12,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class BeanConfig {
 
+    // configuration Database and connection from DataSource class
     @Bean(name = "dataSource")
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
         return DataSourceBuilder.create().type(DataSource.class).build();
     }
 
+    //password encod from BCryptPasswordEncoder class
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

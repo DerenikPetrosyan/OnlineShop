@@ -20,21 +20,26 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
+    //get Country by id
     @GetMapping("/{id}")
     public Country getById(@PathVariable int id) throws NotFoundExcaption {
         return countryService.getById(id);
     }
 
+    //get all Countries
     @GetMapping
     public List<Country> getByAll() throws NotFoundExcaption {
         return countryService.getByAll();
     }
 
+    //crate Country
     @PostMapping
     public ResponseEntity<Void> crateCountry(@Valid @RequestBody Country country) throws DuplicateException {
         countryService.crateCountry(country);
         return ResponseEntity.ok().build();
     }
+
+    //edit Country
     @PatchMapping("edit-country")
     public ResponseEntity<Void> editCountry(@Valid@RequestBody Country country) throws DuplicateException {
         countryService.editCountry(country);

@@ -5,7 +5,9 @@ import am.shop.model.dto.response.ItemsInfoPaser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -40,4 +42,14 @@ public interface ItemsRepository extends JpaRepository<Items,Long> {
     @Query(nativeQuery = true,value = "select * from items ",
             countQuery = "select count(*) from items")
     Page<Items> getItems(Pageable pageable);
+
+    @Modifying
+    @Transactional
+    @Query(nativeQuery = true,value = "UPDATE `items`\n" +
+            "SET `items`.count = ?2\n" +
+            "WHERE id = ?1 ")
+    void subtractCountItems(long id, int count);
+
+    @Query(nativeQuery = true,value = "select count from items where id = ?1")
+    int getByCount(long id);
 }

@@ -15,24 +15,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
+
     @Autowired
     private CategoryService categoryService;
 
+    //get category by id
     @GetMapping("/{id}")
     public Category getById(@PathVariable int id) throws NotFoundExcaption {
         return categoryService.getById(id);
     }
 
+    //get all category
     @GetMapping
     public List<Category> getByAll() throws NotFoundExcaption {
         return categoryService.getByAll();
     }
 
+    //crate new category
     @PostMapping
     public ResponseEntity<Void> crateCategory(@Valid @RequestBody Category category) throws DuplicateException {
         categoryService.crateCategory(category);
         return ResponseEntity.ok().build();
     }
+
+    //edit category
     @PatchMapping("edit-category")
     public ResponseEntity<Void> editCategory(@Valid@RequestBody Category category) throws DuplicateException {
         categoryService.editCategory(category);

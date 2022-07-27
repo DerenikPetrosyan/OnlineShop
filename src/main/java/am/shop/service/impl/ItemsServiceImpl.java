@@ -40,8 +40,7 @@ public class ItemsServiceImpl implements ItemsService {
     private void itemsCreationChecks(Items items) throws BadRequestException {
         if (items.getPrice().signum() <= 0) {
             throw new BadRequestException("You must enter a positive number in the prise  field");
-        }
-        else if(items.getCount()<=0){
+        } else if (items.getCount() <= 0) {
             throw new BadRequestException("You must enter a positive number in the count field");
         }
 
@@ -50,13 +49,13 @@ public class ItemsServiceImpl implements ItemsService {
 
     @Override
     public void editItems(Items items) throws BadRequestException {
-    itemsCreationChecks(items);
-    itemsRepository.save(items);
+        itemsCreationChecks(items);
+        itemsRepository.save(items);
     }
 
     @Override
     public List<ItemsInfoPaser> search(String name, String brand, String category) {
-        return itemsRepository.search(name,brand,category);
+        return itemsRepository.search(name, brand, category);
     }
 
     @Override
@@ -73,5 +72,12 @@ public class ItemsServiceImpl implements ItemsService {
     public Page<Items> pageRequest(Pageable pageable) {
         Page<Items> itemsPage = itemsRepository.getItems(pageable);
         return itemsPage;
+    }
+
+    @Override
+    public void subtractCountItems(long id, int count) {
+
+        int counts = itemsRepository.getByCount(id) - count;
+        itemsRepository.subtractCountItems(id, counts);
     }
 }

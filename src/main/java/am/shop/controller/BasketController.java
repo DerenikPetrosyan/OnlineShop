@@ -17,16 +17,19 @@ public class BasketController {
     @Autowired
     private BasketService basketService;
 
+    //get basket by id
     @GetMapping("/{id}")
     public Basket getById(@PathVariable long id) throws NotFoundExcaption {
         return basketService.getById(id);
     }
 
+    //get all basket
     @GetMapping
     public List<Basket> getByAll() throws NotFoundExcaption {
         return basketService.getByAll();
     }
 
+    //crate new basket
     @PostMapping
     public ResponseEntity<Void> crateBasket(@Valid @RequestBody Basket basket) {
         basketService.crateBasket(basket);

@@ -10,4 +10,8 @@ public interface BasketService {
     List<Basket> getByAll();
 
     void crateBasket(Basket basket);
+
+    List<Basket> getByUserItems(long usrerId);
+
+    int getByCount(long id);
 }
