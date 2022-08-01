@@ -69,3 +69,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //.antMatchers(HttpMethod.GET,"/user/get-all");
     }
 }
+
+

@@ -10,6 +10,7 @@ import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<Void> crateUser(@Valid @RequestBody UserRequestDto dto) throws DuplicateException, BadRequestException, NotFoundExcaption {
         userService.createUser(dto);
         return ResponseEntity.ok().build();

@@ -1,10 +1,12 @@
 package am.shop.model.dto.request;
 
-
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * A class used to send a request to reset the password
+ */
 @Data
 public class ResetPasswordDto {
 

@@ -8,7 +8,6 @@ import am.shop.model.dto.response.UserInfoParser;
 import am.shop.model.dto.response.UserResponseDto;
 import am.shop.repository.UserRepository;
 import am.shop.service.UserService;
-//import am.shop.util.MailSender.MailSender;
 import am.shop.util.exceptions.BadRequestException;
 import am.shop.util.exceptions.DuplicateException;
 import am.shop.util.exceptions.NotFoundExcaption;
@@ -20,6 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,10 +31,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-
-//    @Autowired(required = true)
-//    private MailSender mailSender;
-
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -42,8 +39,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private AddressServiceImpl addressService;
-
-    private int VER_TIME = 60*60*1000;
 
 
     @Override
@@ -58,19 +53,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(UserRequestDto dto) throws DuplicateException, BadRequestException, NotFoundExcaption {
-
+    public void createUser(UserRequestDto dto) throws DuplicateException, BadRequestException {
         userCreationChecks(dto);
-
         User user = new User();
+
+        //date convert to long
+        if (dto.getDob()!=null){
+            Date d = dto.getDob();
+            long milliseconds = d.getTime();
+            user.setDob(milliseconds);
+        }
+
 
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setEmail(dto.getEmail());
-        user.setDob(dto.getDob());
         user.setGender(dto.getGender());
         user.setStatus(UserStatus.UNVERIFIED);
-        user.setAddress(dto.getAddress());
         user.setUpdatedAt(System.currentTimeMillis());
 
         Set<Role> roles = new HashSet<>();
@@ -83,18 +82,14 @@ public class UserServiceImpl implements UserService {
 
         String varCod = RandomString.make(6);
         user.setVerCode(varCod);
+        user.setPassword(dto.getPassword());
 
-
-        user.setAddress(dto.getAddress());
-
-        sendEmail(user.getEmail(),"OlineSHop",varCod);
-
-
+       // sendEmail(user.getEmail(),"OnlineSHop",varCod);
         userRepository.save(user);
 
     }
 
-    private void userCreationChecks(UserRequestDto dto) throws DuplicateException, BadRequestException, NotFoundExcaption {
+    private void userCreationChecks(UserRequestDto dto) throws DuplicateException, BadRequestException {
 
         if (userRepository.existsByEmail(dto.getEmail())) {
             throw new DuplicateException();
@@ -102,7 +97,6 @@ public class UserServiceImpl implements UserService {
         else if (dto.getPassword().compareTo(dto.getConfirmPassword()) != 0) {
             throw new BadRequestException();
         }
-        addressService.addressCreationChecks(dto.getAddress());
     }
 
     @Override
@@ -206,6 +200,5 @@ public class UserServiceImpl implements UserService {
 
         javaMailSender.send(message);
 
-//        mailSender.sendEmail(toEmail,subject,body);
     }
 }

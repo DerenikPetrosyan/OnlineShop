@@ -4,6 +4,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Set;
 
+
 @Data
 @Entity
 public class User {
@@ -48,6 +49,5 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
 
-    
 
 }

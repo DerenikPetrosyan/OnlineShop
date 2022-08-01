@@ -7,11 +7,15 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * class, with the help of which we change the attributes shown below,
+ * reducing the volume of the sent request
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class EditUserDto {
-
     @NotNull
     private long id;
 
@@ -22,6 +26,4 @@ public class EditUserDto {
     private Gender gender;
 
     private long dob;
-
-
 }
