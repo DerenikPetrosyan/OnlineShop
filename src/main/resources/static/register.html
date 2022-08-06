@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="icon" href="./img/shopping_icon.png">
+    <link rel="stylesheet"  href="css/register.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="author" content="Derenik Petrosyan">
+</head>
+<body >
+<div class="register">
+    <div class="container">
+        <h1>Register</h1>
+        <a href="http://localhost:9090" class="exit">
+            <img src="img/shopping_icon.png">
+        </a>
+        <a href="sign_in.html" class="sign_in">
+            <img src="img/user.png">
+        </a>
+        <form id="signUp" autocomplete="off" >
+            <input type="text" placeholder=" First name" id="firstName" name="firstName">
+
+            <input type="text" placeholder=" Last name" id="lastName" name="lastName">
+
+            <input type="email" placeholder=" Email"  id="email" name="email">
+
+
+            <input type="password" placeholder=" password" id="password" name="password">
+
+            <input type="password" placeholder=" confirm password" id="confirmPassword" name="confirmPassword">
+
+            <h2>Gender</h2>
+            <label for="MALE">MALE</label><input type="radio" name="gender" id="MALE" value="MALE">
+            <label for="FEMALE">FEMALE</label><input type="radio" name="gender" id="FEMALE" value="FEMALE">
+            <label id="dob"> Birthday </label><input type="date" name = "dob">
+            <button>Sign up</button>
+        </form>
+    </div>
+
+</div>
+
+<script type="module"  src="js/register.js"></script>
+</body>
+</html>

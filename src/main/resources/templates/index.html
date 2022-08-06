@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Derenik Petrosyan">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OnlineShop</title>
+    <link rel="icon" href="static/img/shopping_icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+          integrity="sha512-BnbUDfEUfV0Slx6TunuB042k9tuKe3xrD6q4mg5Ed72LTgzDIcLPxg6yI2gcMFRyomt+yJJxE+zJwNmxki6/RA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="static\css\styles.css">
+</head>
+<body>
+<div class="top_nav ">
+    <div class="container">
+        <div class="top_nav_block">
+            <a href="https://facebook.com" target="_blank" title="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                    <path d="M32,6C17.642,6,6,17.642,6,32c0,13.035,9.603,23.799,22.113,25.679V38.89H21.68v-6.834h6.433v-4.548 c0-7.529,3.668-10.833,9.926-10.833c2.996,0,4.583,0.223,5.332,0.323v5.965h-4.268c-2.656,0-3.584,2.52-3.584,5.358v3.735h7.785 l-1.055,6.834h-6.73v18.843C48.209,56.013,58,45.163,58,32C58,17.642,46.359,6,32,6z"/>
+                </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" title="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.2 19.2">
+                    <path d="M13.898 7.051a1.656 1.656 0 0 0-.95-.949 2.766 2.766 0 0 0-.928-.172c-.527-.024-.685-.03-2.02-.03s-1.493.006-2.02.03a2.766 2.766 0 0 0-.929.172 1.656 1.656 0 0 0-.949.95 2.766 2.766 0 0 0-.172.928c-.024.527-.03.685-.03 2.02s.006 1.493.03 2.02a2.766 2.766 0 0 0 .172.929 1.656 1.656 0 0 0 .95.949 2.766 2.766 0 0 0 .928.172c.527.024.685.03 2.02.03s1.493-.006 2.02-.03a2.766 2.766 0 0 0 .929-.172 1.656 1.656 0 0 0 .949-.95 2.766 2.766 0 0 0 .172-.928c.024-.527.03-.685.03-2.02s-.006-1.493-.03-2.02a2.766 2.766 0 0 0-.172-.929zM10 12.568A2.568 2.568 0 1 1 12.568 10 2.568 2.568 0 0 1 10 12.568zm2.669-4.637a.6.6 0 1 1 .6-.6.6.6 0 0 1-.6.6z"/>
+                    <circle cx="9.6" cy="9.6" r="1.667"/>
+                    <path d="M10 .4a9.6 9.6 0 1 0 9.6 9.6A9.6 9.6 0 0 0 10 .4zm4.97 11.662a3.67 3.67 0 0 1-.233 1.213 2.556 2.556 0 0 1-1.462 1.462 3.67 3.67 0 0 1-1.213.233c-.534.024-.704.03-2.062.03s-1.528-.006-2.062-.03a3.67 3.67 0 0 1-1.213-.233 2.556 2.556 0 0 1-1.462-1.462 3.67 3.67 0 0 1-.233-1.213C5.006 11.528 5 11.358 5 10s.006-1.528.03-2.062a3.67 3.67 0 0 1 .233-1.213 2.556 2.556 0 0 1 1.462-1.462 3.67 3.67 0 0 1 1.213-.233C8.472 5.006 8.642 5 10 5s1.528.006 2.062.03a3.67 3.67 0 0 1 1.213.233 2.556 2.556 0 0 1 1.462 1.462 3.67 3.67 0 0 1 .233 1.213c.024.534.03.704.03 2.062s-.006 1.528-.03 2.062z"/>
+                </svg>
+            </a>
+        </div>
+        <div class="top_nav_block">
+            <div class="search-box">
+                <input type="search-txt" name="" placeholder="Type to search">
+                <a class="search-btn" href="#">
+                    <i class="fas fa-search fa-1x"></i>
+                </a>
+            </div>
+            <a href="static/sign_in.html" id="sign_in">
+                <img src="static/img/user.png">
+            </a>
+        </div>
+    </div>
+</div>
+<nav>
+    <div class="container">
+        <div class="nav_logo">
+            <a href="">
+                <img src="static/img/shopping_icon.png">
+            </a>
+        </div>
+        <div class="nav_menu">
+            <div class="menuBtn">
+                <div></div>
+            </div>
+            <ul id="menu">
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Kids</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Accessory</a></li>
+                <li><a href="#">Home accessory</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header style="background-image: url('static/img/header.jpg')">
+    <div class="header_content">
+        <h1>Online SHop</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, iure nesciunt. Quam vel, totam
+            reprehenderit quod in asperiores tempora accusamus saepe ratione eius, deleniti quibusdam doloremque
+            soluta repellat vero eveniet?
+        </p>
+
+        <div class="header_content__buttons">
+            <a id="see_all_product">See all product</a>
+            <a href="tel:+37400000000" id="callModalBtn">Call</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Top Furniture-->
+    <div class="container">
+        <h2 class="title">
+            Top
+        </h2>
+        <div class="items_wrapper">
+            <dev class="item">
+                <div class="item_header">
+                    <a href="product.html">
+                        <img src="static/img/women.webp" alt="item title">
+                    </a>
+                </div>
+                <div class="item_footer">
+                    <h3>
+                        <a href="product.html">Women</a>
+                    </h3>
+                    <a href="#" class="see_more"> See all․․․</a>
+                </div>
+            </dev>
+            <dev class="item">
+                <div class="item_header">
+                    <a href="product.html">
+                        <img src="static/img/men.webp" alt="item title">
+                    </a>
+                </div>
+                <div class="item_footer">
+                    <h3>
+                        <a href="product.html">Men</a>
+                    </h3>
+                    <a href="#" class="see_more"> See all․․․</a>
+                </div>
+            </dev>
+            <dev class="item">
+                <div class="item_header">
+                    <a href="product.html">
+                        <img src="static/img/kids4.webp" alt="item title">
+                    </a>
+                </div>
+                <div class="item_footer">
+                    <h3>
+                        <a href="product.html">Kids</a>
+                    </h3>
+                    <a href="#" class="see_more">See all․․․</a>
+                </div>
+            </dev>
+            <dev class="item">
+                <div class="item_header">
+                    <a href="product.html">
+                        <img src="static/img/sport.webp" alt="item title">
+                    </a>
+                </div>
+                <div class="item_footer">
+                    <h3>
+                        <a href="product.html">Sport</a>
+                    </h3>
+                    <a href="#" class="see_more"> See all․․․</a>
+                </div>
+            </dev>
+            <dev class="item">
+                <div class="item_header">
+                    <a href="product.html">
+                        <img src="static/img/accessory.webp" alt="item title">
+                    </a>
+                </div>
+                <div class="item_footer">
+                    <h3>
+                        <a href="product.html">Accessory</a>
+                    </h3>
+                    <a href="#" class="see_more"> See all․․․</a>
+                </div>
+            </dev>
+            <dev class="item">
+                <div class="item_header">
+                    <a href="product.html">
+                        <img src="static/img/home_accessory.webp" alt="item title">
+                    </a>
+                </div>
+                <div class="item_footer">
+                    <h3>
+                        <a href="product.html">Home accessory</a>
+                    </h3>
+                    <a href="#" class="see_more"> See all․․․</a>
+                </div>
+            </dev>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer_block">
+            <a href="index.html">
+                <img src="static/img/shopping_icon.png">
+            </a>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae magnam qui accusamus earum. Eum,
+                possimus.</p>
+        </div>
+        <div class="footer_block">
+            <h3>Products</h3>
+            <ul id="footer_menu">
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Kids</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Accessory</a></li>
+                <li><a href="#">Home accessory</a></li>
+            </ul>
+        </div>
+        <div class="footer_block">
+            <h3> Support</h3>
+            <ul>
+                <li><a href="#"> About Us</a></li>
+                <li><a href="#"> Rules of Use</a></li>
+                <li><a href="#"> Privacy Policy</a></li>
+                <li><a href="#"> Customer Rights</a></li>
+            </ul>
+        </div>
+        <div class="footer_block">
+            <h3>Feedback</h3>
+            <ul>
+                <li><a href="https://facebook.com">Facebook</a></li>
+                <li><a href="https://instagram.com">Instagram</a></li>
+            </ul>
+            <ul>
+                <li><a href="mailto:info@onlineShop.com"> info@onlineShop.com</a></li>
+                <li><a href="tel:+37400000000">(+374) 00 00-00-00</a></li>
+                <li><a href="https://goo.gl/maps/PW37uLDitBYHMr3A6" target="_blank"> Kentron, Yerevan, Armenia</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<script src="static/js/script.js"></script>
+</body>
+</html>
